@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
+//Hi Will its me >:)
+
 MainWindow::~MainWindow()
 {
     delete ui;
