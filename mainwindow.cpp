@@ -8,9 +8,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 }
 
-//Hi Will its me >:)
-
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_action_Task_triggered()
+{
+
+}
+
+void MainWindow::on_action_Quit_triggered()
+{
+    close();
 }
