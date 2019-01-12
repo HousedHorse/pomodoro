@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidget>
+#include "task.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +23,7 @@ private slots:
     void on_action_Quit_triggered();
 
 private:
+    void addTask(Task* t = nullptr, QListWidget* w = nullptr);
     Ui::MainWindow *ui;
 };
 
