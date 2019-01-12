@@ -27,6 +27,8 @@ private slots:
 
     void on_action_Stop_triggered();
 
+    void on_action_Previous_triggered();
+    
 private:
     void addTask(Task* t = nullptr, QListWidget* w = nullptr);
     Ui::MainWindow *ui;

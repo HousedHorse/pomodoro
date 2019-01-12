@@ -17,11 +17,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->inProgress->setMaximumHeight(temp->geometry().height());
     delete(temp);
 
-    // set icons for media buttons
-    ui->playPauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-    ui->prevButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
-    ui->nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
+    // set icons for media actions
+    ui->action_Start->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    ui->action_Stop->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
+    ui->action_Previous->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+    ui->action_Next->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
 
+    // connect actions to action buttons
+    ui->playPauseButton->setAction(ui->action_Start);
+    ui->prevButton->setAction(ui->action_Previous);
+    ui->nextButton->setAction(ui->action_Next);
+    ui->clearButton->setAction(ui->action_Clear_Completed);
 }
 
 MainWindow::~MainWindow()
@@ -64,4 +70,80 @@ void MainWindow::addTask(Task *t, QListWidget* w)
     if(w == ui->inProgress) {
         t->setEnabled(true);
     }
+}
+
+void MainWindow::on_action_Start_triggered()
+{
+    // toggle between start and stop actions in UI
+    ui->action_Start->setEnabled(false);
+    ui->action_Stop->setEnabled(true);
+    ui->playPauseButton->setAction(ui->action_Stop);
+
+    // FIXME: implement timer starting
+}
+
+void MainWindow::on_action_Stop_triggered()
+{
+    // toggle between start and stop actions in UI
+    ui->action_Start->setEnabled(true);
+    ui->action_Stop->setEnabled(false);
+    ui->playPauseButton->setAction(ui->action_Start);
+
+    // FIXME: implement timer stopping
+}
+
+void MainWindow::on_action_Previous_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_Next_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_Clear_Completed_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_Save_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_New_Worksheet_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_actionSave_As_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_About_triggered()
+{
+
+    // FIXME: implement this
+
+}
+
+void MainWindow::on_action_Usage_Guide_triggered()
+{
+
+    // FIXME: implement this
+
 }

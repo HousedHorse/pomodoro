@@ -2,5 +2,8 @@
     <qresource prefix="/img">
         <file>img/new-task.png</file>
         <file>img/icons8-close-window-100.png</file>
+        <file>img/save.png</file>
+        <file>img/saveas.png</file>
+        <file>img/contract.png</file>
     </qresource>
 </RCC>
