@@ -6,6 +6,8 @@ Task::Task(QWidget *parent, const QString& name) :
     ui(new Ui::Task)
 {
     ui->setupUi(this);
+
+    // set task name
     m_name = name;
 }
 
@@ -26,7 +28,10 @@ void Task::setName(const QString &name)
 
 void Task::setEnabled(bool enabled)
 {
-    ui->progressBar->setEnabled(enabled);
+    ui->workBar->setEnabled(enabled);
+    ui->breakBar->setEnabled(false); // break bar should always be disabled by default
+    ui->workLabel->setEnabled(enabled);
+    ui->breakLabel->setEnabled(enabled);
     ui->checkBox->setEnabled(enabled);
 }
 

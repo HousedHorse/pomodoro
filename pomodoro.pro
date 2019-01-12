@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    task.cpp
+    task.cpp \
+    actionbutton.cpp
 
 HEADERS += \
         mainwindow.h \
-    task.h
+    task.h \
+    actionbutton.h
 
 FORMS += \
         mainwindow.ui \

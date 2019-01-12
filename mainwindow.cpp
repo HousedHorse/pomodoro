@@ -6,6 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    Task* temp = new Task;
+    ui->inProgress->setMaximumHeight(temp->geometry().height());
+    delete(temp);
+
 }
 
 MainWindow::~MainWindow()
@@ -34,6 +39,8 @@ void MainWindow::addTask(Task *t, QListWidget* w)
         return;
     if(w == nullptr)
         w = ui->inProgress;
+    if(w == ui->inProgress && ui->inProgress->count() >= 1)
+        w = ui->upNext;
 
     // add to widget
     QListWidgetItem* item;
@@ -43,7 +50,7 @@ void MainWindow::addTask(Task *t, QListWidget* w)
     w->setItemWidget(item,t);
 
     // set timer enabled if appropriate
-    if(w->count() == 1) {
+    if(w == ui->inProgress) {
         t->setEnabled(true);
     }
 }

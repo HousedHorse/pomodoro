@@ -168,6 +168,7 @@
     <bool>true</bool>
    </attribute>
    <addaction name="action_Task"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Quit">
