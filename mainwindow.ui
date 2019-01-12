@@ -18,10 +18,43 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QListView" name="listView">
+    <item row="1" column="0">
+     <widget class="QListWidget" name="inProgress">
+      <property name="toolTip">
+       <string>Your &quot;in progress&quot; tasks</string>
+      </property>
+      <property name="dragEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollMode">
+       <enum>QAbstractItemView::ScrollPerItem</enum>
+      </property>
       <property name="isWrapping" stdset="0">
        <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QListWidget" name="done">
+      <property name="toolTip">
+       <string>Your &quot;completed&quot; tasks</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>In Progress</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">color: green;</string>
+      </property>
+      <property name="text">
+       <string>Complete</string>
       </property>
      </widget>
     </item>
@@ -84,13 +117,21 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
+   <addaction name="action_Task"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Quit">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/img/icons8-close-window-100.png</normaloff>:/img/img/icons8-close-window-100.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit the program</string>
    </property>
    <property name="statusTip">
     <string>Quit the program</string>
@@ -100,11 +141,18 @@
    </property>
   </action>
   <action name="action_Task">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/img/new-task.png</normaloff>:/img/img/new-task.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Task</string>
    </property>
+   <property name="iconText">
+    <string>New Task</string>
+   </property>
    <property name="toolTip">
-    <string>Task</string>
+    <string>Add a new task</string>
    </property>
    <property name="statusTip">
     <string>Add a new task</string>
@@ -118,6 +166,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

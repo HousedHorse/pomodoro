@@ -16,18 +16,33 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <widget class="QProgressBar" name="progressBar">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Task timer progress</string>
+     </property>
+     <property name="statusTip">
+      <string>Task timer progress</string>
+     </property>
      <property name="value">
-      <number>24</number>
+      <number>0</number>
      </property>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLineEdit" name="lineEdit"/>
-   </item>
-   <item row="0" column="1">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>PushButton</string>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="toolTip">
+      <string>Name of the task</string>
+     </property>
+     <property name="statusTip">
+      <string>Name of the task</string>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+     <property name="placeholderText">
+      <string>Task Name</string>
      </property>
     </widget>
    </item>
@@ -44,8 +59,27 @@
      </property>
     </spacer>
    </item>
+   <item row="0" column="1">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Mark task as complete</string>
+     </property>
+     <property name="statusTip">
+      <string>Mark task as complete</string>
+     </property>
+     <property name="text">
+      <string>Complete</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <signal>nameChanged(QString)</signal>
+ </slots>
 </ui>
