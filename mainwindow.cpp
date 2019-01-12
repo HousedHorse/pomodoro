@@ -65,8 +65,3 @@ void MainWindow::addTask(Task *t, QListWidget* w)
         t->setEnabled(true);
     }
 }
-
-void MainWindow::on_action_Show_Toolbar_toggled(bool arg1)
-{
-
-}

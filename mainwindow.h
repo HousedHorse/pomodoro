@@ -22,8 +22,6 @@ private slots:
 
     void on_action_Quit_triggered();
 
-    void on_action_Show_Toolbar_toggled(bool arg1);
-
 private:
     void addTask(Task* t = nullptr, QListWidget* w = nullptr);
     Ui::MainWindow *ui;

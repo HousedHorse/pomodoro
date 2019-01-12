@@ -347,6 +347,7 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <addaction name="action_Clear_Completed"/>
    </widget>
    <widget class="QMenu" name="menu_View">
     <property name="title">
@@ -358,8 +359,19 @@
      <string>&amp;Help</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menu_Timer">
+    <property name="title">
+     <string>&amp;Timer</string>
+    </property>
+    <addaction name="action_Start"/>
+    <addaction name="action_Stop"/>
+    <addaction name="separator"/>
+    <addaction name="action_Previous"/>
+    <addaction name="action_Next"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
+   <addaction name="menu_Timer"/>
    <addaction name="menu_View"/>
    <addaction name="menu_Help"/>
   </widget>
@@ -416,12 +428,47 @@
     <string>Ctrl+T</string>
    </property>
   </action>
-  <action name="action_Show_Toolbar">
-   <property name="checkable">
-    <bool>true</bool>
+  <action name="action_Start">
+   <property name="text">
+    <string>&amp;Start</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Stop">
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
-    <string>&amp;Show Toolbar</string>
+    <string>S&amp;top</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Previous">
+   <property name="text">
+    <string>&amp;Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_Next">
+   <property name="text">
+    <string>&amp;Next</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_Clear_Completed">
+   <property name="text">
+    <string>&amp;Clear Completed</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
    </property>
   </action>
  </widget>
