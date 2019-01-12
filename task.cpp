@@ -32,7 +32,6 @@ void Task::setEnabled(bool enabled)
     ui->breakBar->setEnabled(false); // break bar should always be disabled by default
     ui->workLabel->setEnabled(enabled);
     ui->breakLabel->setEnabled(enabled);
-    ui->checkBox->setEnabled(enabled);
 }
 
 void Task::on_lineEdit_textEdited(const QString &arg1)

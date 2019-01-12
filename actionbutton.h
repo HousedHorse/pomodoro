@@ -6,7 +6,7 @@
 class ActionButton : public QPushButton
 {
 public:
-    ActionButton();
+    explicit ActionButton(QWidget* parent = nullptr);
 };
 
 #endif // ACTIONBUTTON_H

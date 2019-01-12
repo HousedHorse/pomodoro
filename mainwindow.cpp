@@ -7,9 +7,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // add toolbar toggle to view menu
+    QAction* toggleToolbar = ui->mainToolBar->toggleViewAction();
+    toggleToolbar->setText("&Toolbar");
+    ui->menu_View->addAction(toggleToolbar);
+
+    // set size for inProgress section
     Task* temp = new Task;
     ui->inProgress->setMaximumHeight(temp->geometry().height());
     delete(temp);
+
+    // set icons for media buttons
+    ui->playPauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+    ui->prevButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+    ui->nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
 
 }
 
@@ -53,4 +64,9 @@ void MainWindow::addTask(Task *t, QListWidget* w)
     if(w == ui->inProgress) {
         t->setEnabled(true);
     }
+}
+
+void MainWindow::on_action_Show_Toolbar_toggled(bool arg1)
+{
+
 }

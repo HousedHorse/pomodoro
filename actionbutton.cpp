@@ -1,6 +1,6 @@
 #include "actionbutton.h"
 
-ActionButton::ActionButton()
+ActionButton::ActionButton(QWidget *parent) : QPushButton (parent)
 {
 
 }
