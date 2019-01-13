@@ -246,19 +246,25 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
-         <item row="2" column="0">
-          <widget class="QListWidget" name="done">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="3" column="0">
+          <widget class="ActionButton" name="clearButton">
+           <property name="styleSheet">
+            <string notr="true">background-color:red</string>
            </property>
-           <property name="toolTip">
-            <string>Your &quot;completed&quot; tasks</string>
+           <property name="text">
+            <string>Clear Completed</string>
            </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -282,25 +288,13 @@
            </item>
           </layout>
          </item>
-         <item row="3" column="0">
-          <widget class="ActionButton" name="clearButton">
-           <property name="styleSheet">
-            <string notr="true">background-color:red</string>
-           </property>
-           <property name="text">
-            <string>Clear Completed</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-           <property name="default">
-            <bool>false</bool>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
+         <item row="2" column="0">
+          <widget class="QListWidget" name="done">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
           </widget>
          </item>
