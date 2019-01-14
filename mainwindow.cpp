@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // set size for inProgress section
     Task* temp = new Task;
-    ui->inProgress->setMaximumHeight(temp->geometry().height());
+    ui->inProgressScrollArea->setMaximumHeight(temp->geometry().height());
     delete(temp);
 
     // set icons for media actions
@@ -51,30 +51,11 @@ void MainWindow::on_action_Quit_triggered()
     close();
 }
 
-void MainWindow::addTask(Task *t, QListWidget* w)
+void MainWindow::addTask(Task *t)
 {
-    if(t == nullptr)
+    if(!t)
         return;
-    if(w == nullptr)
-        w = ui->inProgress;
-    if(w == ui->inProgress && ui->inProgress->count() >= 1)
-        w = ui->upNext;
 
-    // add to widget
-    QListWidgetItem* item;
-    item = new QListWidgetItem(w);
-    w->addItem(item);
-    item->setSizeHint(t->sizeHint());
-    t->setItem(item);
-    w->setItemWidget(item,t);
-
-    // connect item checkbox to changing completion
-    connect(t, SIGNAL(toggleCompleted(bool)), this, SLOT(toggleCompleted(bool)));
-
-    // set timer enabled if appropriate
-    if(w == ui->inProgress) {
-        t->setEnabled(true);
-    }
 }
 
 void MainWindow::on_action_Start_triggered()
@@ -156,14 +137,7 @@ void MainWindow::on_action_Usage_Guide_triggered()
 void MainWindow::toggleCompleted(bool completed)
 {
     Task* t = qobject_cast<Task*>(sender());
-    QListWidgetItem *item = t->item();
     if(completed){
-        qDebug() << ui->inProgress->takeItem(ui->inProgress->row(item));
-        qDebug() << ui->upNext->takeItem(ui->upNext->row(item));
-        ui->done->insertItem(ui->done->count(), item);
-        ui->done->setItemWidget(item,t); // causing the crash
     } else {
-        ui->done->takeItem(ui->done->row(item));
-        ui->upNext->addItem(item);
     }
 }

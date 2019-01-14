@@ -142,31 +142,6 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="1" column="0" rowspan="2" colspan="2">
-          <widget class="QListWidget" name="inProgress">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Your currently in progress task</string>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
-           </property>
-           <property name="selectionRectVisible">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="styleSheet">
@@ -175,6 +150,26 @@
            <property name="text">
             <string>In Progress</string>
            </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QScrollArea" name="inProgressScrollArea">
+           <property name="styleSheet">
+            <string notr="true">background-color:white;</string>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="inProgress">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>830</width>
+              <height>359</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -200,28 +195,23 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QListWidget" name="upNext">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QScrollArea" name="scrollArea_2">
+           <property name="styleSheet">
+            <string notr="true">background-color:white;</string>
            </property>
-           <property name="toolTip">
-            <string>Your &quot;up next&quot; tasks</string>
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
-           <property name="dragEnabled">
-            <bool>false</bool>
-           </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
-           </property>
-           <property name="verticalScrollMode">
-            <enum>QAbstractItemView::ScrollPerItem</enum>
-           </property>
-           <property name="isWrapping" stdset="0">
-            <bool>false</bool>
-           </property>
+           <widget class="QWidget" name="upNext">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>830</width>
+              <height>359</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -246,6 +236,26 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
+         <item row="2" column="0">
+          <widget class="QScrollArea" name="scrollArea_3">
+           <property name="styleSheet">
+            <string notr="true">background-color:white;</string>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="complete">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>830</width>
+              <height>750</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </item>
          <item row="3" column="0">
           <widget class="ActionButton" name="clearButton">
            <property name="styleSheet">
@@ -269,32 +279,12 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <property name="bottomMargin">
-            <number>0</number>
+          <widget class="QLabel" name="label_2">
+           <property name="styleSheet">
+            <string notr="true">color: green;</string>
            </property>
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="styleSheet">
-              <string notr="true">color: green;</string>
-             </property>
-             <property name="text">
-              <string>Complete</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="widget" native="true"/>
-           </item>
-          </layout>
-         </item>
-         <item row="2" column="0">
-          <widget class="QListWidget" name="done">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+           <property name="text">
+            <string>Complete</string>
            </property>
           </widget>
          </item>
@@ -380,7 +370,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="action_Task"/>
    <addaction name="separator"/>

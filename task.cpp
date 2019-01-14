@@ -44,13 +44,3 @@ void Task::on_checkBox_toggled(bool checked)
 {
     emit toggleCompleted(checked);
 }
-
-QListWidgetItem *Task::item() const
-{
-    return m_item;
-}
-
-void Task::setItem(QListWidgetItem *item)
-{
-    m_item = item;
-}

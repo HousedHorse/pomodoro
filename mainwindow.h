@@ -46,7 +46,7 @@ private slots:
     void toggleCompleted(bool completed);
 
 private:
-    void addTask(Task* t = nullptr, QListWidget* w = nullptr);
+    void addTask(Task* t = nullptr);
     Ui::MainWindow *ui;
 };
 
