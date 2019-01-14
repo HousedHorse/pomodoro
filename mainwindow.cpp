@@ -13,9 +13,17 @@ MainWindow::MainWindow(QWidget *parent) :
     toggleToolbar->setText("&Toolbar");
     ui->menu_View->addAction(toggleToolbar);
 
+    QVBoxLayout* l1 = new QVBoxLayout(ui->inProgress);
+    QVBoxLayout* l2 = new QVBoxLayout(ui->complete);
+    QVBoxLayout* l3 = new QVBoxLayout(ui->upNext);
+
+    l1->setAlignment(Qt::AlignTop);
+    l2->setAlignment(Qt::AlignTop);
+    l3->setAlignment(Qt::AlignTop);
+
     // set size for inProgress section
     Task* temp = new Task;
-    ui->inProgressScrollArea->setMaximumHeight(temp->geometry().height());
+    ui->inProgress->setMinimumHeight(temp->geometry().height() + 32);
     delete(temp);
 
     // set icons for media actions
@@ -51,11 +59,46 @@ void MainWindow::on_action_Quit_triggered()
     close();
 }
 
-void MainWindow::addTask(Task *t)
+void MainWindow::addTask(Task *t, QWidget* w)
 {
     if(!t)
         return;
+    if(!w)
+        w = ui->inProgress;
+    if(w == ui->inProgress && w->children().count() > 1)
+        w = ui->upNext;
 
+    if(w == ui->inProgress)
+        t->setEnabled(true);
+
+    QLayout* layout = w->layout();
+
+    connect(t, SIGNAL(toggleCompleted(bool)), this, SLOT(slotToggleCompleted(bool)));
+
+    t->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    layout->addWidget(t);
+}
+
+void MainWindow::moveTask(Task *t, QWidget *d)
+{
+    if(!t || !d)
+        return;
+
+    if(d == ui->inProgress && ui->inProgress->children().count() > 1)
+        d = ui->upNext;
+
+    if(d == ui->inProgress)
+        t->setEnabled(true);
+    else
+        t->setEnabled(false);
+
+    t->parentWidget()->layout()->removeWidget(t);
+    d->layout()->addWidget(t);
+
+    // update inProgress if necessary
+    if(ui->inProgress->children().count() == 1 && ui->upNext->children().count() > 1){
+        moveTask(qobject_cast<Task*>(ui->upNext->children().at(1)),ui->inProgress);
+    }
 }
 
 void MainWindow::on_action_Start_triggered()
@@ -94,9 +137,24 @@ void MainWindow::on_action_Next_triggered()
 
 void MainWindow::on_action_Clear_Completed_triggered()
 {
+   if(ui->complete->children().count() <= 1)
+       return;
 
-    // FIXME: implement this
+   int reply = QMessageBox::warning(this,tr("Application"),
+                                           tr("This will irreversibly delete all completed tasks. Do you want to proceed?"),
+                                           QMessageBox::Yes | QMessageBox::No);
 
+   if(reply == QMessageBox::No)
+       return;
+   if(reply == QMessageBox::Yes){
+       while(ui->complete->children().count() > 1){
+           Task* t = qobject_cast<Task*>(ui->complete->children().at(1));
+           if(t){
+               ui->complete->layout()->removeWidget(t);
+               delete(t);
+           }
+       }
+   }
 }
 
 void MainWindow::on_action_Save_triggered()
@@ -134,10 +192,13 @@ void MainWindow::on_action_Usage_Guide_triggered()
 
 }
 
-void MainWindow::toggleCompleted(bool completed)
+void MainWindow::slotToggleCompleted(bool completed)
 {
     Task* t = qobject_cast<Task*>(sender());
+    t->parentWidget()->layout()->removeWidget(t);
     if(completed){
+        moveTask(t,ui->complete);
     } else {
+        moveTask(t,ui->inProgress);
     }
 }

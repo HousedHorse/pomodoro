@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QListWidget>
+#include <QMessageBox>
+#include <QStyle>
 #include "task.h"
 #include "actionbutton.h"
 
@@ -43,10 +44,13 @@ private slots:
 
     void on_action_Usage_Guide_triggered();
 
-    void toggleCompleted(bool completed);
+    void slotToggleCompleted(bool completed);
+
+public slots:
 
 private:
-    void addTask(Task* t = nullptr);
+    void addTask(Task* t = nullptr, QWidget* w = nullptr);
+    void moveTask(Task* t = nullptr,QWidget* d = nullptr);
     Ui::MainWindow *ui;
 };
 

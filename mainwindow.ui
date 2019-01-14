@@ -129,20 +129,26 @@
      </layout>
     </item>
     <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="ipFrameLayout">
       <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
        <widget class="QFrame" name="frame_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
+        <layout class="QVBoxLayout" name="ipLayout">
+         <item>
           <widget class="QLabel" name="label">
            <property name="styleSheet">
             <string notr="true">color:blue</string>
@@ -152,24 +158,17 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QScrollArea" name="inProgressScrollArea">
+         <item>
+          <widget class="QWidget" name="inProgress" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="styleSheet">
-            <string notr="true">background-color:white;</string>
+            <string notr="true">background-color: white;</string>
            </property>
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <widget class="QWidget" name="inProgress">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>830</width>
-              <height>359</height>
-             </rect>
-            </property>
-           </widget>
           </widget>
          </item>
         </layout>
@@ -208,7 +207,7 @@
               <x>0</x>
               <y>0</y>
               <width>830</width>
-              <height>359</height>
+              <height>710</height>
              </rect>
             </property>
            </widget>
