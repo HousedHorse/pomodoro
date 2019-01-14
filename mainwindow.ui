@@ -54,7 +54,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="prevButton">
+              <widget class="ActionButton" name="prevButton">
                <property name="text">
                 <string/>
                </property>
@@ -77,7 +77,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="playPauseButton">
+              <widget class="ActionButton" name="playPauseButton">
                <property name="text">
                 <string/>
                </property>
@@ -100,7 +100,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="nextButton">
+              <widget class="ActionButton" name="nextButton">
                <property name="text">
                 <string/>
                </property>
@@ -129,51 +129,45 @@
      </layout>
     </item>
     <item row="1" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="ipFrameLayout">
       <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
        <widget class="QFrame" name="frame_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="1" column="0" rowspan="2" colspan="2">
-          <widget class="QListWidget" name="inProgress">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Your currently in progress task</string>
-           </property>
-           <property name="verticalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="horizontalScrollBarPolicy">
-            <enum>Qt::ScrollBarAlwaysOff</enum>
-           </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
-           </property>
-           <property name="selectionRectVisible">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
+        <layout class="QVBoxLayout" name="ipLayout">
+         <item>
           <widget class="QLabel" name="label">
            <property name="styleSheet">
             <string notr="true">color:blue</string>
            </property>
            <property name="text">
             <string>In Progress</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="inProgress" native="true">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: white;</string>
            </property>
           </widget>
          </item>
@@ -200,28 +194,23 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QListWidget" name="upNext">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QScrollArea" name="scrollArea_2">
+           <property name="styleSheet">
+            <string notr="true">background-color:white;</string>
            </property>
-           <property name="toolTip">
-            <string>Your &quot;up next&quot; tasks</string>
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
-           <property name="dragEnabled">
-            <bool>false</bool>
-           </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
-           </property>
-           <property name="verticalScrollMode">
-            <enum>QAbstractItemView::ScrollPerItem</enum>
-           </property>
-           <property name="isWrapping" stdset="0">
-            <bool>false</bool>
-           </property>
+           <widget class="QWidget" name="upNext">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>830</width>
+              <height>710</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -247,43 +236,27 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_4">
          <item row="2" column="0">
-          <widget class="QListWidget" name="done">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QScrollArea" name="scrollArea_3">
+           <property name="styleSheet">
+            <string notr="true">background-color:white;</string>
            </property>
-           <property name="toolTip">
-            <string>Your &quot;completed&quot; tasks</string>
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
-           <property name="selectionMode">
-            <enum>QAbstractItemView::NoSelection</enum>
-           </property>
+           <widget class="QWidget" name="complete">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>830</width>
+              <height>750</height>
+             </rect>
+            </property>
+           </widget>
           </widget>
          </item>
-         <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="styleSheet">
-              <string notr="true">color: green;</string>
-             </property>
-             <property name="text">
-              <string>Complete</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QWidget" name="widget" native="true"/>
-           </item>
-          </layout>
-         </item>
          <item row="3" column="0">
-          <widget class="QPushButton" name="clearButton">
+          <widget class="ActionButton" name="clearButton">
            <property name="styleSheet">
             <string notr="true">background-color:red</string>
            </property>
@@ -301,6 +274,16 @@
            </property>
            <property name="flat">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="styleSheet">
+            <string notr="true">color: green;</string>
+           </property>
+           <property name="text">
+            <string>Complete</string>
            </property>
           </widget>
          </item>
@@ -386,14 +369,14 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="action_Task"/>
    <addaction name="separator"/>
+   <addaction name="action_Previous"/>
    <addaction name="action_Start"/>
    <addaction name="action_Stop"/>
    <addaction name="action_Next"/>
-   <addaction name="action_Previous"/>
    <addaction name="separator"/>
    <addaction name="action_New_Worksheet"/>
    <addaction name="action_Save"/>
@@ -439,7 +422,7 @@
     <string>Add a new task</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_Start">
@@ -483,9 +466,6 @@
    <property name="statusTip">
     <string>Go to previous task</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
   </action>
   <action name="action_Next">
    <property name="text">
@@ -496,9 +476,6 @@
    </property>
    <property name="statusTip">
     <string>Go to next task</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_Clear_Completed">
@@ -516,6 +493,10 @@
    </property>
   </action>
   <action name="action_Save">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/img/save.png</normaloff>:/img/img/save.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Save</string>
    </property>
@@ -530,11 +511,15 @@
    </property>
   </action>
   <action name="action_New_Worksheet">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/img/contract.png</normaloff>:/img/img/contract.png</iconset>
+   </property>
    <property name="text">
     <string>New &amp;Worksheet</string>
    </property>
    <property name="toolTip">
-    <string>Clear everything and start over</string>
+    <string>New worksheet: clear everything and start over</string>
    </property>
    <property name="statusTip">
     <string>Clear everything and start over</string>
@@ -544,6 +529,10 @@
    </property>
   </action>
   <action name="actionSave_As">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/img/saveas.png</normaloff>:/img/img/saveas.png</iconset>
+   </property>
    <property name="text">
     <string>Save &amp;As</string>
    </property>
@@ -572,6 +561,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ActionButton</class>
+   <extends>QPushButton</extends>
+   <header>actionbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>
