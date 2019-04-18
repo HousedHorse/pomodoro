@@ -2,10 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>
-#include <QStyle>
-#include "task.h"
-#include "actionbutton.h"
+
+class Task;
+class ActionButton;
+class TimerControl;
+class QTextToSpeech;
 
 namespace Ui {
 class MainWindow;
@@ -46,12 +47,24 @@ private slots:
 
     void slotToggleCompleted(bool completed);
 
+    void updateTimers();
+
+    void cycleTask();
+
+    void workDone();
+    void breakDone();
+
 public slots:
 
 private:
     void addTask(Task* t = nullptr, QWidget* w = nullptr);
     void moveTask(Task* t = nullptr,QWidget* d = nullptr);
     Ui::MainWindow *ui;
+    TimerControl *m_timerControl;
+
+    QTextToSpeech *m_speech;
+
+    Task *taskInProgress();
 };
 
 #endif // MAINWINDOW_H

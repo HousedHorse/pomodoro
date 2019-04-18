@@ -6,4 +6,7 @@
         <file>img/saveas.png</file>
         <file>img/contract.png</file>
     </qresource>
+    <qresource prefix="/sound">
+        <file>sound/beep.wav</file>
+    </qresource>
 </RCC>

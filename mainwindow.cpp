@@ -1,6 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QDebug>
+#include <QStyle>
+#include <QMessageBox>
+#include <QTextToSpeech>
+
+#include "task.h"
+#include "actionbutton.h"
+#include "timercontrol.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -37,6 +45,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->prevButton->setAction(ui->action_Previous);
     ui->nextButton->setAction(ui->action_Next);
     ui->clearButton->setAction(ui->action_Clear_Completed);
+
+    // text to speech
+    m_speech = new QTextToSpeech(this);
+    m_speech->setVoice(m_speech->availableVoices().at(0));
+    m_speech->setVolume(1);
+
+    // timer control
+    m_timerControl = new TimerControl(this);
+    connect(m_timerControl, SIGNAL(incrementTimers()),
+            this, SLOT(updateTimers()));
+    m_timerControl->launch();
 }
 
 MainWindow::~MainWindow()
@@ -73,7 +92,14 @@ void MainWindow::addTask(Task *t, QWidget* w)
 
     QLayout* layout = w->layout();
 
-    connect(t, SIGNAL(toggleCompleted(bool)), this, SLOT(slotToggleCompleted(bool)));
+    connect(t, SIGNAL(toggleCompleted(bool)),
+            this, SLOT(slotToggleCompleted(bool)));
+    connect(t, SIGNAL(done()),
+            this, SLOT(cycleTask()));
+    connect(t, SIGNAL(signalWorkDone()),
+            this, SLOT(workDone()));
+    connect(t, SIGNAL(signalBreakDone()),
+            this, SLOT(breakDone()));
 
     t->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     layout->addWidget(t);
@@ -98,7 +124,23 @@ void MainWindow::moveTask(Task *t, QWidget *d)
     // update inProgress if necessary
     if(ui->inProgress->children().count() == 1 && ui->upNext->children().count() > 1){
         moveTask(qobject_cast<Task*>(ui->upNext->children().at(1)),ui->inProgress);
+        taskInProgress()->reset();
     }
+}
+
+Task *MainWindow::taskInProgress()
+{
+    if(ui->inProgress->children().count() <= 1)
+        return nullptr;
+
+    QObject *obj = ui->inProgress->children().at(1);
+
+    if(!obj)
+        return nullptr;
+
+    Task *t = qobject_cast<Task*>(obj);
+
+    return t;
 }
 
 void MainWindow::on_action_Start_triggered()
@@ -108,7 +150,7 @@ void MainWindow::on_action_Start_triggered()
     ui->action_Stop->setEnabled(true);
     ui->playPauseButton->setAction(ui->action_Stop);
 
-    // FIXME: implement timer starting
+    m_timerControl->toggleTimer(true);
 }
 
 void MainWindow::on_action_Stop_triggered()
@@ -118,7 +160,7 @@ void MainWindow::on_action_Stop_triggered()
     ui->action_Stop->setEnabled(false);
     ui->playPauseButton->setAction(ui->action_Start);
 
-    // FIXME: implement timer stopping
+    m_timerControl->toggleTimer(false);
 }
 
 void MainWindow::on_action_Previous_triggered()
@@ -201,4 +243,29 @@ void MainWindow::slotToggleCompleted(bool completed)
     } else {
         moveTask(t,ui->inProgress);
     }
+}
+
+void MainWindow::updateTimers()
+{
+    Task *t = taskInProgress();
+
+    if(t)
+        t->incrementTime();
+}
+
+void MainWindow::cycleTask()
+{
+    Task *t = taskInProgress();
+
+    moveTask(t, ui->upNext);
+}
+
+void MainWindow::workDone()
+{
+    m_speech->say("Work finished. Start break.");
+}
+
+void MainWindow::breakDone()
+{
+    m_speech->say("Break finished. Start working.");
 }

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia texttospeech
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     task.cpp \
-    actionbutton.cpp
+    actionbutton.cpp \
+    timercontrol.cpp
 
 HEADERS += \
         mainwindow.h \
     task.h \
-    actionbutton.h
+    actionbutton.h \
+    timercontrol.h
 
 FORMS += \
         mainwindow.ui \
